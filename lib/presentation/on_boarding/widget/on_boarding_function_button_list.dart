@@ -19,6 +19,7 @@ class OnBoardingFunctionButtonList extends StatelessWidget {
           backgroundColor: RemovalColor.gray60,
           color: RemovalColor.white,
           text: "회원가입",
+
         ),
       ],
     );
