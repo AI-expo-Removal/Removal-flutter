@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:removal_flutter/core/removal.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -23,11 +24,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 70),
-      child: Center(
-        child: Image.asset(
-          'assets/images/logo/splash_removal_title.png',
+    return Scaffold(
+      backgroundColor: RemovalColor.gray100,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 70),
+        child: Center(
+          child: Image.asset(
+            'assets/images/logo/removal_title.png',
+          ),
         ),
       ),
     );
