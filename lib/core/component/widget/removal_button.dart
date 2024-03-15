@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:removal_flutter/core/component/fonts/removal_text_style.dart';
 
 class RemovalButton extends StatelessWidget {
-  final Color backgroundColor;
   final Color color;
   final String text;
+  final Color? backgroundColor;
+  final Gradient? gradient;
 
   const RemovalButton({
     super.key,
-    required this.backgroundColor,
     required this.color,
     required this.text,
+    this.backgroundColor,
+    this.gradient,
   });
 
   @override
@@ -19,6 +21,7 @@ class RemovalButton extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: 48,
       decoration: BoxDecoration(
+        gradient: gradient,
         color: backgroundColor,
         borderRadius: BorderRadius.circular(4),
       ),
