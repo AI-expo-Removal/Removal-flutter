@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   /// 1.5초간 로고가 박힌 화면을 보여준 후 다음 페이지로 넘어감
   _navigateToNextScreen() async {
     await Future.delayed(const Duration(milliseconds: 1500)); // 1.5초(1500밀리초) 지연
-    context.goNamed('/onBoarding');
+    context.go('/onBoarding');
   }
 
   @override
