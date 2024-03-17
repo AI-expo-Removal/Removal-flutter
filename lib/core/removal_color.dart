@@ -23,6 +23,7 @@ class RemovalColor {
   static Color gray80 = const Color(0xFF474747);
   static Color gray90 = const Color(0xFF2E2E2E);
   static Color gray100 = const Color(0xFF141414);
+  static Color gray300 = const Color(0xFFADADAD);
 
   static Gradient main = LinearGradient(
     colors: [
