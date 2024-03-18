@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:removal_flutter/core/view/splash_screen.dart';
 import 'package:removal_flutter/presentation/login/view/login_screen.dart';
 import 'package:removal_flutter/presentation/on_boarding/view/on_boarding_screen.dart';
+import 'package:removal_flutter/presentation/sign_up/view/sign_up_id_pw_screen.dart';
 import 'package:removal_flutter/presentation/sign_up/view/sign_up_user_info_screen.dart';
 
 final router = GoRouter(
@@ -20,8 +21,12 @@ final router = GoRouter(
       builder: (context, state) => const LoginScreen(),
     ),
     GoRoute(
-      path: '/signUp',
-      builder: (context, state) => const SignUpScreen(),
+      path: '/signUpUserInfo',
+      builder: (context, state) => const SignUpUserInfoScreen(),
+    ),
+    GoRoute(
+      path: '/signUpIdPw',
+      builder: (context, state) => const SignUpIdPwScreen(),
     ),
   ],
 );
