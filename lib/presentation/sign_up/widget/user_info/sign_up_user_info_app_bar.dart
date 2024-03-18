@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:removal_flutter/core/removal.dart';
 
-class SignUpAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const SignUpAppBar({super.key});
+class SignUpUserInfoAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const SignUpUserInfoAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +13,19 @@ class SignUpAppBar extends StatelessWidget implements PreferredSizeWidget {
         preferredSize: preferredSize,
         child: AppBar(
           backgroundColor: RemovalColor.gray100,
+          automaticallyImplyLeading: false,
           title: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  context.pop('/onBoarding');
+                },
+                child: SvgPicture.asset(
+                  "assets/images/icon/core/left_arrow_icon.svg",
+                ),
+              ),
               RichText(
                 text: TextSpan(
                   children: [

@@ -9,13 +9,20 @@ enum RemovalTextFieldType {
 
 class RemovalTextField extends StatefulWidget {
   final RemovalTextFieldType type;
+  final TextInputType textInputType;
   final TextEditingController controller;
   final FocusNode focusNode;
   final String title;
 
+  final Widget? suffix;
+  final String? widgetTitle;
+
   const RemovalTextField({
     super.key,
     this.type = RemovalTextFieldType.none,
+    this.textInputType = TextInputType.text,
+    this.suffix,
+    this.widgetTitle,
     required this.controller,
     required this.focusNode,
     required this.title,
@@ -60,11 +67,12 @@ class _RemovalTextFieldState extends State<RemovalTextField> {
             style: RemovalTextStyle.caption2(
               color: RemovalColor.white,
             ),
+            keyboardType: widget.textInputType,
             obscureText:
                 !_isClicked && widget.type == RemovalTextFieldType.password,
             obscuringCharacter: "⦁",
             decoration: InputDecoration(
-              hintText: widget.title,
+              hintText: widget.widgetTitle ?? widget.title,
               contentPadding: const EdgeInsets.symmetric(horizontal: 12),
               border: const OutlineInputBorder(
                 borderSide: BorderSide.none,
@@ -72,6 +80,7 @@ class _RemovalTextFieldState extends State<RemovalTextField> {
               hintStyle: RemovalTextStyle.caption2(
                 color: RemovalColor.gray40,
               ),
+              suffix: widget.suffix,
               suffixIcon: widget.type == RemovalTextFieldType.password
                   ? GestureDetector(
                       onTap: () {
