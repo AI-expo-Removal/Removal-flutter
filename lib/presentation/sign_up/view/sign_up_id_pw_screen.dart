@@ -6,7 +6,14 @@ import 'package:removal_flutter/presentation/sign_up/widget/id_pw/sign_up_id_pw_
 import 'package:removal_flutter/presentation/sign_up/widget/sign_up_title_widget.dart';
 
 class SignUpIdPwScreen extends StatelessWidget {
-  const SignUpIdPwScreen({super.key});
+  final String name;
+  final String phoneNumber;
+
+  const SignUpIdPwScreen({
+    super.key,
+    required this.name,
+    required this.phoneNumber,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -56,6 +56,7 @@ class _SignUpIdPwTextFieldListState extends ConsumerState<SignUpIdPwTextFieldLis
           controller: idController,
           focusNode: idFocusNode,
           title: "아이디",
+          maxLength: 15,
         ),
         const SizedBox(height: 4),
         Text(
@@ -69,6 +70,7 @@ class _SignUpIdPwTextFieldListState extends ConsumerState<SignUpIdPwTextFieldLis
           controller: pwController,
           focusNode: pwFocusNode,
           title: "비밀번호",
+          maxLength: 20,
         ),
       ],
     );

@@ -13,7 +13,9 @@ class RemovalTextField extends StatefulWidget {
   final TextEditingController controller;
   final FocusNode focusNode;
   final String title;
+  final int maxLength;
 
+  final Function? onChanged;
   final Widget? suffix;
   final String? widgetTitle;
 
@@ -23,9 +25,11 @@ class RemovalTextField extends StatefulWidget {
     this.textInputType = TextInputType.text,
     this.suffix,
     this.widgetTitle,
+    this.onChanged,
     required this.controller,
     required this.focusNode,
     required this.title,
+    required this.maxLength,
   });
 
   @override
@@ -67,6 +71,8 @@ class _RemovalTextFieldState extends State<RemovalTextField> {
             style: RemovalTextStyle.caption2(
               color: RemovalColor.white,
             ),
+            maxLength: widget.maxLength,
+            onChanged: (value) => widget.onChanged,
             keyboardType: widget.textInputType,
             obscureText:
                 !_isClicked && widget.type == RemovalTextFieldType.password,
@@ -80,6 +86,7 @@ class _RemovalTextFieldState extends State<RemovalTextField> {
               hintStyle: RemovalTextStyle.caption2(
                 color: RemovalColor.gray40,
               ),
+              counterText: "",
               suffix: widget.suffix,
               suffixIcon: widget.type == RemovalTextFieldType.password
                   ? GestureDetector(
