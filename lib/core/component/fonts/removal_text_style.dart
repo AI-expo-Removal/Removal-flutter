@@ -83,7 +83,7 @@ class RemovalTextStyle {
       fontSize: 14,
       fontFamily: pretendard,
       fontWeight: FontWeight.w600,
-      overflow: TextOverflow.visible,
+      overflow: TextOverflow.ellipsis,
     );
   }
 
