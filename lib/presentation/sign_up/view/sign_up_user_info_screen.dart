@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:removal_flutter/core/component/widget/removal_button.dart';
 import 'package:removal_flutter/core/component/widget/removal_text_field.dart';
 import 'package:removal_flutter/core/removal.dart';
-import 'package:removal_flutter/presentation/sign_up/provider/sms_view_model_provider.dart';
 import 'package:removal_flutter/presentation/sign_up/provider/state/sign_up_state.dart';
+import 'package:removal_flutter/presentation/sign_up/view/sign_up_id_pw_screen.dart';
 import 'package:removal_flutter/presentation/sign_up/widget/user_info/sign_up_user_info_app_bar.dart';
 import 'package:removal_flutter/presentation/sign_up/widget/sign_up_title_widget.dart';
 
@@ -19,52 +19,56 @@ class SignUpUserInfoScreen extends ConsumerStatefulWidget {
 
 class _SignUpUserInfoScreenState extends ConsumerState<SignUpUserInfoScreen> {
   late TextEditingController nameController;
-  late TextEditingController phoneNumberController;
-  late TextEditingController phoneNumberCheckController;
+
+  // late TextEditingController phoneNumberController;
+  // late TextEditingController phoneNumberCheckController;
 
   late FocusNode nameFocusNode;
-  late FocusNode phoneNumberFocusNode;
-  late FocusNode phoneNumberCheckFocusNode;
+
+  // late FocusNode phoneNumberFocusNode;
+  // late FocusNode phoneNumberCheckFocusNode;
 
   @override
   void initState() {
     super.initState();
     nameController = TextEditingController();
     nameController.addListener(_buttonUpdate);
-    phoneNumberController = TextEditingController();
-    phoneNumberController.addListener(_buttonUpdate);
-    phoneNumberCheckController = TextEditingController();
-    phoneNumberCheckController.addListener(_buttonUpdate);
+    // phoneNumberController = TextEditingController();
+    // phoneNumberController.addListener(_buttonUpdate);
+    // phoneNumberCheckController = TextEditingController();
+    // phoneNumberCheckController.addListener(_buttonUpdate);
 
     nameFocusNode = FocusNode();
-    phoneNumberFocusNode = FocusNode();
-    phoneNumberCheckFocusNode = FocusNode();
+    // phoneNumberFocusNode = FocusNode();
+    // phoneNumberCheckFocusNode = FocusNode();
   }
 
   @override
   void dispose() {
     super.dispose();
     nameController.dispose();
-    phoneNumberController.dispose();
-    phoneNumberCheckController.dispose();
+    // phoneNumberController.dispose();
+    // phoneNumberCheckController.dispose();
 
     nameFocusNode.dispose();
-    phoneNumberFocusNode.dispose();
-    phoneNumberCheckFocusNode.dispose();
+    // phoneNumberFocusNode.dispose();
+    // phoneNumberCheckFocusNode.dispose();
   }
 
   void _buttonUpdate() {
-    nameController.text.isNotEmpty &&
+    nameController.text
+            .isNotEmpty /*&&
             phoneNumberController.text.isNotEmpty &&
-            phoneNumberCheckController.text.isNotEmpty
+            phoneNumberCheckController.text.isNotEmpty*/
         ? ref.read(signUpUserInfoFieldStateProvider.notifier).state = true
         : ref.read(signUpUserInfoFieldStateProvider.notifier).state = false;
   }
 
   @override
   Widget build(BuildContext context) {
-    final signUpUserInfoFieldState = ref.watch(signUpUserInfoFieldStateProvider);
-    final smsViewModelNotifier = ref.read(smsViewModelProvider.notifier);
+    final signUpUserInfoFieldState =
+        ref.watch(signUpUserInfoFieldStateProvider);
+    //final smsViewModelNotifier = ref.read(smsViewModelProvider.notifier);
     return Scaffold(
       backgroundColor: RemovalColor.gray100,
       appBar: const SignUpUserInfoAppBar(),
@@ -87,7 +91,7 @@ class _SignUpUserInfoScreenState extends ConsumerState<SignUpUserInfoScreen> {
                     maxLength: 5,
                   ),
                   const SizedBox(height: 20),
-                  RemovalTextField(
+                  /*RemovalTextField(
                     controller: phoneNumberController,
                     focusNode: phoneNumberFocusNode,
                     textInputType: TextInputType.number,
@@ -130,14 +134,19 @@ class _SignUpUserInfoScreenState extends ConsumerState<SignUpUserInfoScreen> {
                         ),
                       ),
                     ),
-                  ),
+                  ),*/
                 ],
               ),
               const Spacer(),
               GestureDetector(
                 onTap: () {
                   if (signUpUserInfoFieldState) {
-                    context.push('/signUpIdPw');
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            SignUpIdPwScreen(name: nameController.text),
+                      ),
+                    );
                   }
                 },
                 child: RemovalButton(

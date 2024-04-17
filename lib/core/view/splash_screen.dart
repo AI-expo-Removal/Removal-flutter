@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:removal_flutter/core/removal.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  ConsumerState<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   void initState() {
-    _navigateToNextScreen();
     super.initState();
-  }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
 
-  /// 1.5초간 로고가 박힌 화면을 보여준 후 다음 페이지로 넘어감
-  _navigateToNextScreen() async {
-    await Future.delayed(const Duration(milliseconds: 1500)); // 1.5초(1500밀리초) 지연
-    context.go('/onBoarding');
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    context.go('/onBoarding');
     return Scaffold(
       backgroundColor: RemovalColor.gray100,
       body: Padding(

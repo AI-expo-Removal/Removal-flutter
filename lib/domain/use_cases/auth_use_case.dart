@@ -21,13 +21,11 @@ class AuthUseCase {
     required String accountId,
     required String password,
     required String name,
-    required String phoneNumber,
   }) async {
     await _repository.postSignUp(
       accountId: accountId,
       password: password,
       name: name,
-      phoneNumber: phoneNumber,
     );
   }
 

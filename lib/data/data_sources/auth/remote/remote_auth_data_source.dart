@@ -34,13 +34,11 @@ class RemoteAuthDataSource {
     required String accountId,
     required String password,
     required String name,
-    required String phoneNumber,
   }) async {
     Map<String, dynamic> data = {
       "accountId": accountId,
       "password": password,
       "name": name,
-      "phoneNumber": phoneNumber,
     };
 
     try {

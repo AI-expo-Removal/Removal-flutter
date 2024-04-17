@@ -11,7 +11,6 @@ abstract class AuthRepository {
     required String accountId,
     required String password,
     required String name,
-    required String phoneNumber,
   });
 
   Future<TokenModel> reIssue({

@@ -20,6 +20,14 @@ class LocalAuthDataSource {
     );
   }
 
+  Future<void> loadToken({
+    required JwtStoreProperties properties,
+  }) async {
+    await _jwtStore.load(
+      properties: properties,
+    );
+  }
+
   Future<void> logOut() async {
     await _jwtStore.delete(JwtStoreProperties.accessToken);
     await _jwtStore.delete(JwtStoreProperties.refreshToken);

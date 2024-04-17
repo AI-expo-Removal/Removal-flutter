@@ -13,7 +13,6 @@ class SignUpViewModel extends StateNotifier<SignUpState> {
     required String accountId,
     required String password,
     required String name,
-    required String phoneNumber,
   }) async {
     state = SignUpState.loading;
     try {
@@ -21,7 +20,6 @@ class SignUpViewModel extends StateNotifier<SignUpState> {
         accountId: accountId,
         password: password,
         name: name,
-        phoneNumber: phoneNumber,
       );
       state = SignUpState.success;
     } catch (err) {

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:removal_flutter/core/component/fonts/removal_text_style.dart';
 import 'package:removal_flutter/core/removal.dart';
 
-class UserPhoneNumber extends StatelessWidget {
-  const UserPhoneNumber({Key? key}) : super(key: key);
+class UserPhoneNumberWidget extends StatelessWidget {
+  const UserPhoneNumberWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

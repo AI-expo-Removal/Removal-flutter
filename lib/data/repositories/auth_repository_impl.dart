@@ -33,13 +33,11 @@ class AuthRepositoryImpl implements AuthRepository {
     required String accountId,
     required String password,
     required String name,
-    required String phoneNumber,
   }) async {
     await _remoteAuthDataSource.postSignUp(
       accountId: accountId,
       password: password,
       name: name,
-      phoneNumber: phoneNumber,
     );
   }
 

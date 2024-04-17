@@ -12,7 +12,7 @@ final router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const MainScreen(),
+      builder: (context, state) => const SplashScreen(),
     ),
     GoRoute(
       path: '/onBoarding',
@@ -25,15 +25,6 @@ final router = GoRouter(
     GoRoute(
       path: '/signUpUserInfo',
       builder: (context, state) => const SignUpUserInfoScreen(),
-    ),
-    GoRoute(
-      path: '/signUpIdPw',
-      builder: (context, state) {
-        return SignUpIdPwScreen(
-          name: state.extra.toString(),
-          phoneNumber: state.extra.toString(),
-        );
-      },
     ),
     GoRoute(
       path: '/main',
