@@ -14,14 +14,13 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-
-    });
+    Future.delayed(const Duration(milliseconds: 1500)).then(
+      (value) => context.go("/main"),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    context.go('/onBoarding');
     return Scaffold(
       backgroundColor: RemovalColor.gray100,
       body: Padding(

@@ -25,7 +25,7 @@ class MainCreateProjectWidget extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  '새 프로젝트',
+                  '영상 업로드',
                   style: RemovalTextStyle.button1(
                     color: RemovalColor.white,
                   ),
