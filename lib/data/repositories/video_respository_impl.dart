@@ -10,6 +10,11 @@ class VideoRepositoryImpl implements VideoRepository {
 
 
   @override
+  Future<void> uploadS3(File video) async {
+    await _remoteVideoDataSource.uploadS3(video);
+  }
+
+  @override
   Future<void> uploadRemoval({required File video}) async {
     await _remoteVideoDataSource.uploadRemoval(video: video);
   }

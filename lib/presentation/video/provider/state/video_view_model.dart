@@ -9,7 +9,19 @@ class VideoViewModel extends StateNotifier<VideoState> {
 
   VideoViewModel({
     required VideoUseCase videoUseCase,
-  }) : _videoUseCase = videoUseCase, super(VideoState.initial);
+  })  : _videoUseCase = videoUseCase,
+        super(VideoState.initial);
+
+  Future<void> uploadS3(File video) async {
+    state = VideoState.loading;
+    try {
+      await _videoUseCase.uploadS3(video);
+      state = VideoState.success;
+    } catch (err) {
+      state = VideoState.failure;
+      throw Exception(err.toString());
+    }
+  }
 
   Future<void> uploadRemoval({
     required File video,

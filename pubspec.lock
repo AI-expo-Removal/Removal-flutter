@@ -9,6 +9,102 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "67.0.0"
+  amplify_analytics_plugin_interface:
+    dependency: transitive
+    description:
+      name: amplify_analytics_plugin_interface
+      sha256: "39616c56e0bf686ba2a4993cab9233d0345cd20553ad3f4c26daf749afcb8d50"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.1"
+  amplify_api_plugin_interface:
+    dependency: transitive
+    description:
+      name: amplify_api_plugin_interface
+      sha256: "3ca6f4d0f1e47e0dab9ecdd2ae1f6622f8de3a3267c70bc3db51b313651d116e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.1"
+  amplify_auth_plugin_interface:
+    dependency: transitive
+    description:
+      name: amplify_auth_plugin_interface
+      sha256: "514f62d2c4911a64268918e747876ba555b1de44c3fc2c82d2778757706090ea"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.1"
+  amplify_core:
+    dependency: "direct main"
+    description:
+      name: amplify_core
+      sha256: "4078b2dbfcdc72502684a219df89319ee04759f2900e018d9e0db04bd9532aa0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.1"
+  amplify_datastore_plugin_interface:
+    dependency: transitive
+    description:
+      name: amplify_datastore_plugin_interface
+      sha256: ef370df7e30059ebba7997b161369c07b0928653af0056f5ffc6575c9f13132e
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.1"
+  amplify_flutter:
+    dependency: "direct main"
+    description:
+      name: amplify_flutter
+      sha256: eb51e79952f6b2cdc24966f2ba14e4b5b0ad1107497203ec5d87a53bcbb71e60
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.1"
+  amplify_flutter_android:
+    dependency: transitive
+    description:
+      name: amplify_flutter_android
+      sha256: "0dd808853db340ffc472500c77d4dd8507ba4513f60520c5e4cc1ec6325bacd2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.1"
+  amplify_flutter_ios:
+    dependency: transitive
+    description:
+      name: amplify_flutter_ios
+      sha256: "3a6be8a66321bd5cf4857b6961b2ea90bf65c46a2be3764597e50fb351042ba8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.1"
+  amplify_storage_plugin_interface:
+    dependency: transitive
+    description:
+      name: amplify_storage_plugin_interface
+      sha256: b0a0d9fe2ccf7f026893397b6bd40bc7d858993601d0f0ad0a3dd5253c536f38
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.1"
+  amplify_storage_s3:
+    dependency: "direct main"
+    description:
+      name: amplify_storage_s3
+      sha256: c32a034e5563188b1bb9f84c2fe1b11871d6864dc8bb15c4c1b4a1d28cb986ab
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.1"
+  amplify_storage_s3_android:
+    dependency: transitive
+    description:
+      name: amplify_storage_s3_android
+      sha256: b82279c9275aff44697b8b43421d5d3b2034d43a358d1da871d57f67105c4c2e
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.1"
+  amplify_storage_s3_ios:
+    dependency: transitive
+    description:
+      name: amplify_storage_s3_ios
+      sha256: "5e05d030114badca515a1fa2c09732eccaf4ecbbbe3c8d22b5fc3f44108be9a8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.1"
   analyzer:
     dependency: transitive
     description:
@@ -33,6 +129,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  aws_common:
+    dependency: "direct main"
+    description:
+      name: aws_common
+      sha256: "5a5e78e72d9c30d5b968d784b0cc957ab9388cd7981e2e044fc9aad2ae1b505d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.2+5"
   boolean_selector:
     dependency: transitive
     description:
@@ -101,10 +205,10 @@ packages:
     dependency: transitive
     description:
       name: built_value
-      sha256: c7913a9737ee4007efedaffc968c049fd0f3d0e49109e778edc10de9426005cb
+      sha256: "31b7c748fd4b9adf8d25d72a4c4a59ef119f12876cf414f94f8af5131d5fa2b0"
       url: "https://pub.dev"
     source: hosted
-    version: "8.9.2"
+    version: "8.4.4"
   characters:
     dependency: transitive
     description:
@@ -193,6 +297,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.6"
+  date_time_format:
+    dependency: transitive
+    description:
+      name: date_time_format
+      sha256: dc47de14c95a7511e98ca429e1ebfd98c339badb496c9f2aaf56a70d07c7c0bf
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   dio:
     dependency: "direct main"
     description:
@@ -392,6 +504,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.1"
+  http2:
+    dependency: transitive
+    description:
+      name: http2
+      sha256: "9ced024a160b77aba8fb8674e38f70875e321d319e6f303ec18e87bd5a4b0c1d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.0"
   http_multi_server:
     dependency: transitive
     description:
@@ -484,10 +604,10 @@ packages:
     dependency: transitive
     description:
       name: js
-      sha256: c1b2e9b5ea78c45e1a0788d29606ba27dc5f71f019f32ca5140f61ef071838cf
+      sha256: f2c445dce49627136094980615a031419f7f3eb393237e4ecd97ac15dea343f3
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.1"
+    version: "0.6.7"
   json_annotation:
     dependency: "direct main"
     description:
@@ -576,6 +696,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  os_detect:
+    dependency: transitive
+    description:
+      name: os_detect
+      sha256: faf3bcf39515e64da8ff76b2f2805b20a6ff47ae515393e535f8579ff91d6b7f
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   package_config:
     dependency: transitive
     description:
@@ -829,6 +957,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.2"
+  uuid:
+    dependency: transitive
+    description:
+      name: uuid
+      sha256: "648e103079f7c64a36dc7d39369cabb358d377078a051d6ae2ad3aa539519313"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.7"
   vector_graphics:
     dependency: transitive
     description:
@@ -870,7 +1006,7 @@ packages:
     source: hosted
     version: "3.0.0"
   video_player:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: video_player
       sha256: db6a72d8f4fd155d0189845678f55ad2fd54b02c10dcafd11c068dbb631286c0

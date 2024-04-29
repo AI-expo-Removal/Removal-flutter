@@ -1,6 +1,8 @@
 import 'dart:io';
 
 abstract class VideoRepository {
+  Future<void> uploadS3(File video);
+
   Future<void> uploadRemoval({
     required File video,
   });

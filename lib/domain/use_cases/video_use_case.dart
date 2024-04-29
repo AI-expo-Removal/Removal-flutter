@@ -7,6 +7,10 @@ class VideoUseCase {
 
   VideoUseCase({required VideoRepository repository}) : _repository = repository;
 
+  Future<void> uploadS3(File video) async {
+    await _repository.uploadS3(video);
+  }
+
   Future<void> uploadRemoval({required File video}) async {
     await _repository.uploadRemoval(video: video);
   }

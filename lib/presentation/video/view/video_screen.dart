@@ -163,7 +163,7 @@ class _VideoScreenState extends ConsumerState<VideoScreen> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            videoNotifier.uploadRemoval(video: controller.file);
+                            videoNotifier.uploadS3(controller.file);
                           },
                           child: VideoFunctionWidget(
                             iconPath:
