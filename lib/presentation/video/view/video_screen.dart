@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:amplify_flutter/amplify_flutter.dart';
+import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -8,6 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:removal_flutter/core/removal.dart';
+import 'package:removal_flutter/data/data_sources/video/remote/remote_video_data_source.dart';
 import 'package:removal_flutter/presentation/video/provider/video_view_model_provider.dart';
 import 'package:removal_flutter/presentation/video/widget/video_app_bar.dart';
 import 'package:removal_flutter/presentation/video/widget/video_function_widget.dart';
@@ -45,6 +48,7 @@ class _VideoScreenState extends ConsumerState<VideoScreen> {
         Navigator.pop(context);
       }
     });
+    initializeAmplify();
   }
 
   @override
@@ -58,10 +62,35 @@ class _VideoScreenState extends ConsumerState<VideoScreen> {
         duration.inSeconds.remainder(60).toString().padLeft(2, "0"),
       ].join(":");
 
+
+
+  void initializeAmplify() async {
+    try {
+      await Amplify.addPlugins([AmplifyStorageS3()]);
+      await Amplify.configure(amplifyconfig);
+      print('Initialized Amplify');
+    } catch (e) {
+      print('Failed to initialize Amplify: $e');
+    }
+  }
+
+  Future<void> uploadFile() async {
+
+    try {
+      String key = 'path/to/your/file/${DateTime.now().millisecondsSinceEpoch}';
+      UploadFileOptions options = UploadFileOptions(accessLevel: StorageAccessLevel.private);
+      UploadFileResult result = await Amplify.Storage.uploadFile(key: key, local: controller.file, options: options);
+      print('Uploaded file: ${result.key}');
+    } catch (e) {
+      print('Failed to upload file: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final videoState = ref.watch(videoViewModelProvider);
     final videoNotifier = ref.read(videoViewModelProvider.notifier);
+
     return Scaffold(
       backgroundColor: RemovalColor.gray100,
       appBar: const VideoAppBar(),
@@ -163,7 +192,7 @@ class _VideoScreenState extends ConsumerState<VideoScreen> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            videoNotifier.uploadS3(controller.file);
+                            RemoteVideoDataSource().uploadS3(controller.file);
                           },
                           child: VideoFunctionWidget(
                             iconPath:

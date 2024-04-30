@@ -50,6 +50,7 @@ dependencies:
   amplify_core: ^0.5.1
   aws_common: ^0.4.0
   amplify_storage_s3: ^0.5.1
+  aws_client: ^0.4.1
 
 dev_dependencies:
   flutter_test:
