@@ -4,6 +4,8 @@ import 'package:removal_flutter/domain/use_cases/auth_use_case.dart';
 import 'package:removal_flutter/presentation/login/provider/state/login_state.dart';
 
 class LoginViewModel extends StateNotifier<LoginState> {
+
+
   final AuthUseCase _authUseCase;
 
   LoginViewModel({required AuthUseCase authUseCase})

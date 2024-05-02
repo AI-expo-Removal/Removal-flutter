@@ -27,7 +27,7 @@ class OnBoardingFunctionButtonList extends StatelessWidget {
             color: RemovalColor.white,
             text: "회원가입",
           ),
-        ),
+        )
       ],
     );
   }

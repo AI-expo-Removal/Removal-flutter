@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:removal_flutter/domain/use_cases/video_use_case.dart';
 import 'package:removal_flutter/presentation/video/provider/state/video_state.dart';

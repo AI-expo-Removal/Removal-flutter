@@ -31,6 +31,22 @@ final router = GoRouter(
     //   builder: (context, state) => const SignUpUserInfoScreen(),
     // ),
     GoRoute(
+      path: '/Main',
+      builder: (context, state) => const MainScreen(),
+    ),
+    GoRoute(
+      path: '/onBoarding',
+      builder: (context, state) => const OnBoardingScreen(),
+    ),
+    GoRoute(
+      path: '/login',
+      builder: (context, state) => const LoginScreen(),
+    ),
+    GoRoute(
+      path: '/signUpUserInfo',
+      builder: (context, state) => const SignUpUserInfoScreen(),
+    ),
+    GoRoute(
       path: '/main',
       builder: (context, state) => const MainScreen(),
     ),

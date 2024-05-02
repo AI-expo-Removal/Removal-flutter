@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:removal_flutter/amplifyconfiguration.dart';
 import 'package:removal_flutter/core/removal.dart';
 import 'package:removal_flutter/data/data_sources/video/remote/remote_video_data_source.dart';
 import 'package:removal_flutter/presentation/video/provider/video_view_model_provider.dart';
@@ -62,12 +62,10 @@ class _VideoScreenState extends ConsumerState<VideoScreen> {
         duration.inSeconds.remainder(60).toString().padLeft(2, "0"),
       ].join(":");
 
-
-
   void initializeAmplify() async {
     try {
       await Amplify.addPlugins([AmplifyStorageS3()]);
-      await Amplify.configure(amplifyconfig);
+      await Amplify.configure(amplifyconfig as String);
       print('Initialized Amplify');
     } catch (e) {
       print('Failed to initialize Amplify: $e');
@@ -207,7 +205,7 @@ class _VideoScreenState extends ConsumerState<VideoScreen> {
                           },
                           child: VideoFunctionWidget(
                             iconPath: "assets/images/icon/video/caption_icon.svg",
-                            title: "자동 번역",
+                            title: "자막",
                           ),
                         ),
                         GestureDetector(
@@ -216,7 +214,7 @@ class _VideoScreenState extends ConsumerState<VideoScreen> {
                           },
                           child: VideoFunctionWidget(
                             iconPath: "assets/images/icon/video/eraser_icon.svg",
-                            title: "자동 번역",
+                            title: "비속어 삭제",
                           ),
                         ),
                       ],

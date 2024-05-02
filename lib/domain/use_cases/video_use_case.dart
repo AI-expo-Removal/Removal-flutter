@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:removal_flutter/domain/repositories/video_repository.dart';
 
 class VideoUseCase {

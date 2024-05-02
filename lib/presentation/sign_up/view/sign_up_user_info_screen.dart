@@ -160,7 +160,7 @@ class _SignUpUserInfoScreenState extends ConsumerState<SignUpUserInfoScreen> {
             ],
           ),
         ),
-      ),
+      )
     );
   }
 }
