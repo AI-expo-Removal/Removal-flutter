@@ -1,6 +1,9 @@
 import 'dart:io';
 
 import 'package:removal_flutter/data/data_sources/video/remote/remote_video_data_source.dart';
+import 'package:removal_flutter/domain/models/video/compressed_video_response_model.dart';
+import 'package:removal_flutter/domain/models/video/upload_video_response_model.dart';
+import 'package:removal_flutter/domain/models/video/video_response_model.dart';
 import 'package:removal_flutter/domain/repositories/video_repository.dart';
 
 class VideoRepositoryImpl implements VideoRepository {
@@ -8,24 +11,18 @@ class VideoRepositoryImpl implements VideoRepository {
 
   VideoRepositoryImpl({required RemoteVideoDataSource remoteVideoDataSource}) : _remoteVideoDataSource = remoteVideoDataSource;
 
-
   @override
-  Future<void> uploadS3(File video) async {
-    await _remoteVideoDataSource.uploadS3(video);
+  Future<UploadVideoResponseModel> uploadVideo({required File video}) async {
+    return await _remoteVideoDataSource.uploadVideo(video: video);
   }
 
   @override
-  Future<void> uploadRemoval({required File video}) async {
-    await _remoteVideoDataSource.uploadRemoval(video: video);
+  Future<CompressedVideoResponseModel> compressVideo({required String path}) async {
+    return await _remoteVideoDataSource.compressVideo(path: path);
   }
 
   @override
-  Future<void> uploadTranslate({required File video}) async {
-    await _remoteVideoDataSource.uploadTranslate(video: video);
-  }
-
-  @override
-  Future<void> uploadVideo({required File video}) async {
-    await _remoteVideoDataSource.uploadVideo(video: video);
+  Future<VideoResponseModel> getVideo({required String videoName}) async {
+    return await _remoteVideoDataSource.getVideo(videoName: videoName);
   }
 }

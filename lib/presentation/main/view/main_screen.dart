@@ -8,6 +8,8 @@ import 'package:removal_flutter/core/removal.dart';
 import 'package:removal_flutter/presentation/main/widget/main_app_bar.dart';
 import 'package:removal_flutter/presentation/main/widget/main_function_script_widget.dart';
 import 'package:removal_flutter/presentation/main/widget/main_create_project_widget.dart';
+import 'package:removal_flutter/presentation/video/provider/compress_video_view_model_provider.dart';
+import 'package:removal_flutter/presentation/video/provider/upload_video_view_model_provider.dart';
 
 class MainScreen extends ConsumerStatefulWidget {
   const MainScreen({super.key});
@@ -21,6 +23,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final uploadVideoNotifier = ref.read(uploadVideoViewModelProvider.notifier);
     return Scaffold(
       backgroundColor: RemovalColor.gray100,
       appBar: const MainAppBar(),
@@ -48,6 +51,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                           await _picker.pickVideo(source: ImageSource.gallery);
                       if (video != null) {
                         context.push("/video", extra: File(video.path));
+                        uploadVideoNotifier.uploadVideo(video: File(video.path));
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(

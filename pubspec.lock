@@ -9,102 +9,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "67.0.0"
-  amplify_analytics_plugin_interface:
-    dependency: transitive
-    description:
-      name: amplify_analytics_plugin_interface
-      sha256: "39616c56e0bf686ba2a4993cab9233d0345cd20553ad3f4c26daf749afcb8d50"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.1"
-  amplify_api_plugin_interface:
-    dependency: transitive
-    description:
-      name: amplify_api_plugin_interface
-      sha256: "3ca6f4d0f1e47e0dab9ecdd2ae1f6622f8de3a3267c70bc3db51b313651d116e"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.1"
-  amplify_auth_plugin_interface:
-    dependency: transitive
-    description:
-      name: amplify_auth_plugin_interface
-      sha256: "514f62d2c4911a64268918e747876ba555b1de44c3fc2c82d2778757706090ea"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.1"
-  amplify_core:
-    dependency: "direct main"
-    description:
-      name: amplify_core
-      sha256: "4078b2dbfcdc72502684a219df89319ee04759f2900e018d9e0db04bd9532aa0"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.1"
-  amplify_datastore_plugin_interface:
-    dependency: transitive
-    description:
-      name: amplify_datastore_plugin_interface
-      sha256: ef370df7e30059ebba7997b161369c07b0928653af0056f5ffc6575c9f13132e
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.1"
-  amplify_flutter:
-    dependency: "direct main"
-    description:
-      name: amplify_flutter
-      sha256: eb51e79952f6b2cdc24966f2ba14e4b5b0ad1107497203ec5d87a53bcbb71e60
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.1"
-  amplify_flutter_android:
-    dependency: transitive
-    description:
-      name: amplify_flutter_android
-      sha256: "0dd808853db340ffc472500c77d4dd8507ba4513f60520c5e4cc1ec6325bacd2"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.1"
-  amplify_flutter_ios:
-    dependency: transitive
-    description:
-      name: amplify_flutter_ios
-      sha256: "3a6be8a66321bd5cf4857b6961b2ea90bf65c46a2be3764597e50fb351042ba8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.1"
-  amplify_storage_plugin_interface:
-    dependency: transitive
-    description:
-      name: amplify_storage_plugin_interface
-      sha256: b0a0d9fe2ccf7f026893397b6bd40bc7d858993601d0f0ad0a3dd5253c536f38
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.1"
-  amplify_storage_s3:
-    dependency: "direct main"
-    description:
-      name: amplify_storage_s3
-      sha256: c32a034e5563188b1bb9f84c2fe1b11871d6864dc8bb15c4c1b4a1d28cb986ab
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.1"
-  amplify_storage_s3_android:
-    dependency: transitive
-    description:
-      name: amplify_storage_s3_android
-      sha256: b82279c9275aff44697b8b43421d5d3b2034d43a358d1da871d57f67105c4c2e
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.1"
-  amplify_storage_s3_ios:
-    dependency: transitive
-    description:
-      name: amplify_storage_s3_ios
-      sha256: "5e05d030114badca515a1fa2c09732eccaf4ecbbbe3c8d22b5fc3f44108be9a8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.1"
   analyzer:
     dependency: transitive
     description:
@@ -129,6 +33,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+<<<<<<< HEAD
+=======
   aws_client:
     dependency: "direct main"
     description:
@@ -305,14 +211,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.6"
-  date_time_format:
-    dependency: transitive
-    description:
-      name: date_time_format
-      sha256: dc47de14c95a7511e98ca429e1ebfd98c339badb496c9f2aaf56a70d07c7c0bf
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
   dio:
     dependency: "direct main"
     description:
@@ -552,14 +450,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.1"
-  http2:
-    dependency: transitive
-    description:
-      name: http2
-      sha256: "9ced024a160b77aba8fb8674e38f70875e321d319e6f303ec18e87bd5a4b0c1d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.3.0"
   http_multi_server:
     dependency: transitive
     description:
@@ -640,14 +530,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1+1"
-  intl:
-    dependency: transitive
-    description:
-      name: intl
-      sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.18.1"
   io:
     dependency: transitive
     description:
@@ -684,26 +566,26 @@ packages:
     dependency: transitive
     description:
       name: leak_tracker
-      sha256: "78eb209deea09858f5269f5a5b02be4049535f568c07b275096836f01ea323fa"
+      sha256: "7f0df31977cb2c0b88585095d168e689669a2cc9b97c309665e3386f3e9d341a"
       url: "https://pub.dev"
     source: hosted
-    version: "10.0.0"
+    version: "10.0.4"
   leak_tracker_flutter_testing:
     dependency: transitive
     description:
       name: leak_tracker_flutter_testing
-      sha256: b46c5e37c19120a8a01918cfaf293547f47269f7cb4b0058f21531c2465d6ef0
+      sha256: "06e98f569d004c1315b991ded39924b21af84cf14cc94791b8aea337d25b57f8"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.1"
+    version: "3.0.3"
   leak_tracker_testing:
     dependency: transitive
     description:
       name: leak_tracker_testing
-      sha256: a597f72a664dbd293f3bfc51f9ba69816f84dcd403cdac7066cb3f6003f3ab47
+      sha256: "6ba465d5d76e67ddf503e1161d1f4a6bc42306f9d66ca1e8f079a47290fb06d3"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.1"
+    version: "3.0.1"
   lints:
     dependency: transitive
     description:
@@ -740,10 +622,10 @@ packages:
     dependency: transitive
     description:
       name: meta
-      sha256: d584fa6707a52763a52446f02cc621b077888fb63b93bbcb1143a7be5a0c0c04
+      sha256: "7687075e408b093f36e6bbf6c91878cc0d4cd10f409506f7bc996f68220b9136"
       url: "https://pub.dev"
     source: hosted
-    version: "1.11.0"
+    version: "1.12.0"
   mime:
     dependency: transitive
     description:
@@ -752,14 +634,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
-  os_detect:
-    dependency: transitive
-    description:
-      name: os_detect
-      sha256: faf3bcf39515e64da8ff76b2f2805b20a6ff47ae515393e535f8579ff91d6b7f
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
   package_config:
     dependency: transitive
     description:
@@ -985,10 +859,10 @@ packages:
     dependency: transitive
     description:
       name: test_api
-      sha256: "5c2f730018264d276c20e4f1503fd1308dfbbae39ec8ee63c5236311ac06954b"
+      sha256: "9955ae474176f7ac8ee4e989dadfb411a58c30415bcfb648fa04b2b8a03afa7f"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.1"
+    version: "0.7.0"
   timing:
     dependency: transitive
     description:
@@ -1013,14 +887,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.2"
-  uuid:
-    dependency: transitive
-    description:
-      name: uuid
-      sha256: "648e103079f7c64a36dc7d39369cabb358d377078a051d6ae2ad3aa539519313"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.7"
   vector_graphics:
     dependency: transitive
     description:
@@ -1113,10 +979,10 @@ packages:
     dependency: transitive
     description:
       name: vm_service
-      sha256: b3d56ff4341b8f182b96aceb2fa20e3dcb336b9f867bc0eafc0de10f1048e957
+      sha256: "3923c89304b715fb1eb6423f017651664a03bf5f4b29983627c4da791f74a4ec"
       url: "https://pub.dev"
     source: hosted
-    version: "13.0.0"
+    version: "14.2.1"
   watcher:
     dependency: transitive
     description:

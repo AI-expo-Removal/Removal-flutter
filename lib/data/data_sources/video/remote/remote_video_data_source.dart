@@ -1,74 +1,51 @@
 import 'dart:io';
-import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:dio/dio.dart';
-import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:removal_flutter/core/di/dio.dart';
+import 'package:removal_flutter/domain/models/video/compressed_video_response_model.dart';
+import 'package:removal_flutter/domain/models/video/upload_video_response_model.dart';
+import 'package:removal_flutter/domain/models/video/video_response_model.dart';
 
 class RemoteVideoDataSource {
-  Future<void> uploadS3(File file) async {
-    // Upload image with the current time as the key
-    final key = DateTime.now().toString();
-    try {
-      final result = await Amplify.Storage.uploadFile(
-        local: file,
-        key: key,
-        onProgress: (progress) {
-          safePrint('Fraction completed: ${progress.getFractionCompleted()}');
-        },
-      );
-      safePrint('Successfully uploaded image: ${result.key}');
-    } on StorageException catch (e) {
-      safePrint('Error uploading image: $e');
-    }
-  }
-
-  Future<void> uploadRemoval({
+  Future<UploadVideoResponseModel> uploadVideo({
     required File video,
   }) async {
-    try {
-      await dio.post(
-        "/removal",
-        data: video,
-      );
-    } catch (err) {
-      throw Exception(err.toString());
-    }
-  }
+    FormData data = FormData.fromMap(
+        {"video_file": await MultipartFile.fromFile(video.path)});
 
-  Future<void> uploadTranslate({
-    required File video,
-  }) async {
     try {
-      await dio.post(
-        "/translate",
-        data: video,
-        options: Options(
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        ),
-      );
-    } catch (err) {
-      throw Exception(err.toString());
-    }
-  }
-
-  Future<void> uploadVideo({
-    required File video,
-  }) async {
-    FormData data = FormData.fromMap({
-      'file': await MultipartFile.fromFile(video.path),
-    });
-    try {
-      await dio.post(
+      final response = await dio.post(
         "/upload",
         data: data,
-        options: Options(
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        ),
       );
+
+      return UploadVideoResponseModel.fromJson(response.data);
+    } catch (err) {
+      throw Exception(err.toString());
+    }
+  }
+
+  Future<CompressedVideoResponseModel> compressVideo({
+    required String path,
+  }) async {
+    try {
+      final response = await dio.post(
+        "/basic-subtitle",
+        queryParameters: {"video_path": path},
+      );
+      return CompressedVideoResponseModel(statusCode: response.statusCode);
+    } catch (err) {
+      throw Exception(err.toString());
+    }
+  }
+
+  Future<VideoResponseModel> getVideo({
+    required String videoName,
+  }) async {
+    try {
+      final response = await dio.get(
+        "/video/$videoName",
+      );
+      return VideoResponseModel.fromJson(response.data, response.statusCode);
     } catch (err) {
       throw Exception(err.toString());
     }

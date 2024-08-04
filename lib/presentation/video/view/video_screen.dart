@@ -1,17 +1,12 @@
-import 'dart:async';
 import 'dart:io';
-import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:amplify_storage_s3/amplify_storage_s3.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:removal_flutter/amplifyconfiguration.dart';
 import 'package:removal_flutter/core/removal.dart';
-import 'package:removal_flutter/data/data_sources/video/remote/remote_video_data_source.dart';
-import 'package:removal_flutter/presentation/video/provider/video_view_model_provider.dart';
+import 'package:removal_flutter/presentation/video/provider/compress_video_view_model_provider.dart';
+import 'package:removal_flutter/presentation/video/provider/upload_video_view_model_provider.dart';
 import 'package:removal_flutter/presentation/video/widget/video_app_bar.dart';
 import 'package:removal_flutter/presentation/video/widget/video_function_widget.dart';
 import 'package:video_editor/video_editor.dart';
@@ -22,9 +17,9 @@ class VideoScreen extends ConsumerStatefulWidget {
   final Object? file;
 
   const VideoScreen({
-    Key? key,
+    super.key,
     required this.file,
-  }) : super(key: key);
+  });
 
   @override
   ConsumerState<VideoScreen> createState() => _VideoScreenState();
@@ -48,7 +43,6 @@ class _VideoScreenState extends ConsumerState<VideoScreen> {
         Navigator.pop(context);
       }
     });
-    initializeAmplify();
   }
 
   @override
@@ -62,32 +56,11 @@ class _VideoScreenState extends ConsumerState<VideoScreen> {
         duration.inSeconds.remainder(60).toString().padLeft(2, "0"),
       ].join(":");
 
-  void initializeAmplify() async {
-    try {
-      await Amplify.addPlugins([AmplifyStorageS3()]);
-      await Amplify.configure(amplifyconfig as String);
-      print('Initialized Amplify');
-    } catch (e) {
-      print('Failed to initialize Amplify: $e');
-    }
-  }
-
-  Future<void> uploadFile() async {
-
-    try {
-      String key = 'path/to/your/file/${DateTime.now().millisecondsSinceEpoch}';
-      UploadFileOptions options = UploadFileOptions(accessLevel: StorageAccessLevel.private);
-      UploadFileResult result = await Amplify.Storage.uploadFile(key: key, local: controller.file, options: options);
-      print('Uploaded file: ${result.key}');
-    } catch (e) {
-      print('Failed to upload file: $e');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    final videoState = ref.watch(videoViewModelProvider);
-    final videoNotifier = ref.read(videoViewModelProvider.notifier);
+    final compressVideoNotifier =
+        ref.read(compressVideoViewModelProvider.notifier);
+    final uploadVideoState = ref.watch(uploadVideoViewModelProvider);
 
     return Scaffold(
       backgroundColor: RemovalColor.gray100,
@@ -184,43 +157,53 @@ class _VideoScreenState extends ConsumerState<VideoScreen> {
                   ),
                   const Spacer(),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 38.5),
+                    padding: const EdgeInsets.symmetric(horizontal: 38.5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        GestureDetector(
-                          onTap: () {
-                            RemoteVideoDataSource().uploadS3(controller.file);
-                          },
-                          child: VideoFunctionWidget(
-                            iconPath:
-                                "assets/images/icon/video/translate_icon.svg",
-                            title: "자동 번역",
-                          ),
+                        const VideoFunctionWidget(
+                          iconPath:
+                              "assets/images/icon/video/translate_icon.svg",
+                          title: "개발 중...",
                         ),
                         GestureDetector(
                           onTap: () {
-                            videoNotifier.uploadTranslate(video: controller.file);
-                            print(controller.file);
+                            compressVideoNotifier.compressVideo(
+                                path: uploadVideoState.filePath!);
+                          },
+                          child: const VideoFunctionWidget(
+                            iconPath:
+                                "assets/images/icon/video/caption_icon.svg",
+                            title: "자막 추가",
+                          ),
+                        ),
+                        const VideoFunctionWidget(
+                          iconPath: "assets/images/icon/video/eraser_icon.svg",
+                          title: "개발 중...",
+                        ),
+                        GestureDetector(
+                          onTap: () {
+
                           },
                           child: VideoFunctionWidget(
-                            iconPath: "assets/images/icon/video/caption_icon.svg",
+                            iconPath:
+                                "assets/images/icon/video/caption_icon.svg",
                             title: "자막",
                           ),
                         ),
                         GestureDetector(
                           onTap: () {
-                            videoNotifier.uploadVideo(video: controller.file);
                           },
                           child: VideoFunctionWidget(
-                            iconPath: "assets/images/icon/video/eraser_icon.svg",
+                            iconPath:
+                                "assets/images/icon/video/eraser_icon.svg",
                             title: "비속어 삭제",
                           ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 6),
+                  const SizedBox(height: 6),
                 ],
               ),
             )

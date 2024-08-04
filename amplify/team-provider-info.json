@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-removalflutter-dev-7dd3d-authRole",
+      "UnauthRoleArn": "arn:aws:iam::786584124104:role/amplify-removalflutter-dev-7dd3d-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::786584124104:role/amplify-removalflutter-dev-7dd3d-authRole",
+      "Region": "ap-northeast-2",
+      "DeploymentBucketName": "amplify-removalflutter-dev-7dd3d-deployment",
+      "UnauthRoleName": "amplify-removalflutter-dev-7dd3d-unauthRole",
+      "StackName": "amplify-removalflutter-dev-7dd3d",
+      "StackId": "arn:aws:cloudformation:ap-northeast-2:786584124104:stack/amplify-removalflutter-dev-7dd3d/098bded0-081d-11ef-9166-0a9a0549c251",
+      "AmplifyAppId": "dju4wm85li8zc"
+    }
+  }
+}
