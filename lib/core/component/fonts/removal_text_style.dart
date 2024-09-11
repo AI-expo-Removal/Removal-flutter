@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 const String pretendard = 'Pretendard';
 
 class RemovalTextStyle {
+  RemovalTextStyle._();
+
   static TextStyle heading1({
     required Color color,
   }) {
