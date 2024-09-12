@@ -10,7 +10,12 @@ class UploadVideoViewModel extends StateNotifier<UploadVideoResponseModel> {
   UploadVideoViewModel({
     required VideoUseCase videoUseCase,
   })  : _videoUseCase = videoUseCase,
-        super(UploadVideoResponseModel(message: null, title: null, filePath: null));
+        super(UploadVideoResponseModel(
+          message: null,
+          title: null,
+          filePath: null,
+          statusCode: const AsyncData(500),
+        ));
 
   Future<void> uploadVideo({
     required File video,

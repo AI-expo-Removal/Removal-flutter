@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:removal_flutter/data/data_sources/video/remote/remote_video_data_source.dart';
-import 'package:removal_flutter/domain/models/video/compressed_video_response_model.dart';
 import 'package:removal_flutter/domain/models/video/upload_video_response_model.dart';
 import 'package:removal_flutter/domain/models/video/video_response_model.dart';
 import 'package:removal_flutter/domain/repositories/video_repository.dart';
@@ -17,12 +16,7 @@ class VideoRepositoryImpl implements VideoRepository {
   }
 
   @override
-  Future<CompressedVideoResponseModel> compressVideo({required String path}) async {
-    return await _remoteVideoDataSource.compressVideo(path: path);
-  }
-
-  @override
-  Future<VideoResponseModel> getVideo({required String videoName}) async {
-    return await _remoteVideoDataSource.getVideo(videoName: videoName);
+  Future<VideoResponseModel> getBasicSubtitleVideo({required String videoPath}) async {
+    return await _remoteVideoDataSource.getBasicSubtitleVideo(videoPath: videoPath);
   }
 }

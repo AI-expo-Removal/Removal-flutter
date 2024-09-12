@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:removal_flutter/core/constants/removal_style.dart';
 
 class RemovalDialog extends StatelessWidget {

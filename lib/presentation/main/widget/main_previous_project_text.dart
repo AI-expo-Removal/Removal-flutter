@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:removal_flutter/core/removal.dart';
+import 'package:removal_flutter/core/constants/removal_style.dart';
 
 class MainPreviousProjectText extends StatefulWidget {
   const MainPreviousProjectText({super.key});

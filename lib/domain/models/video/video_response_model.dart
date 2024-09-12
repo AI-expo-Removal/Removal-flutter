@@ -1,24 +1,36 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:removal_flutter/domain/models/video/video_detail_model.dart';
+
 class VideoResponseModel {
-  final String? videoPath;
-  final int? statusCode;
+  final AsyncValue<int?> statusCode;
+  final VideoDetailModel? detail;
+  final String? header;
 
   VideoResponseModel({
-    required this.videoPath,
     required this.statusCode,
+    required this.detail,
+    required this.header,
   });
 
   factory VideoResponseModel.fromJson(
-      Map<String, dynamic> json, int? statusCode) {
+      Map<String, dynamic> json
+  ) {
     return VideoResponseModel(
-      videoPath: json['videoPath'],
-      statusCode: statusCode,
+      statusCode: AsyncData<int?>(json["status_code"]),
+      detail: VideoDetailModel.fromJson(json["detail"]),
+      header: json["header"],
     );
   }
 
-  VideoResponseModel copyWith({String? videoPath, int? statusCode}) {
+  VideoResponseModel copyWith({
+    AsyncValue<int?>? statusCode,
+    VideoDetailModel? detail,
+    String? header,
+  }) {
     return VideoResponseModel(
-      videoPath: videoPath ?? this.videoPath,
       statusCode: statusCode ?? this.statusCode,
+      detail: detail ?? this.detail,
+      header: header ?? this.header,
     );
   }
 }

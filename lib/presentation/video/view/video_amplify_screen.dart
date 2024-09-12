@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:removal_flutter/core/removal.dart';
+import 'package:removal_flutter/core/constants/removal_style.dart';
 import 'package:video_editor/video_editor.dart';
 
 class VideoAmplifyScreen extends StatefulWidget {
-  final Object? controller;
+  final VideoEditorController? controller;
 
   const VideoAmplifyScreen({
     super.key,

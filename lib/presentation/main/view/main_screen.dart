@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:removal_flutter/core/removal.dart';
+import 'package:removal_flutter/core/component/widget/removal_dialog.dart';
+import 'package:removal_flutter/core/constants/removal_style.dart';
 import 'package:removal_flutter/presentation/main/widget/main_app_bar.dart';
 import 'package:removal_flutter/presentation/main/widget/main_function_script_widget.dart';
 import 'package:removal_flutter/presentation/main/widget/main_create_project_widget.dart';
-import 'package:removal_flutter/presentation/video/provider/compress_video_view_model_provider.dart';
 import 'package:removal_flutter/presentation/video/provider/upload_video_view_model_provider.dart';
 
 class MainScreen extends ConsumerStatefulWidget {
@@ -20,10 +20,31 @@ class MainScreen extends ConsumerStatefulWidget {
 
 class _MainScreenState extends ConsumerState<MainScreen> {
   final ImagePicker _picker = ImagePicker();
+  XFile? video;
 
   @override
   Widget build(BuildContext context) {
     final uploadVideoNotifier = ref.read(uploadVideoViewModelProvider.notifier);
+    ref.listen(uploadVideoViewModelProvider.select((value) => value.statusCode),
+        (previous, next) {
+      if (next == const AsyncData<int?>(200)) {
+        context.push('/video', extra: File(video!.path));
+      } if (next == const AsyncData<int?>(500)) {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) {
+            return RemovalDialog(
+              content: "동영상 업로드에 문제가 생겼습니다.",
+              cancelFunc: () => context.pop("/"),
+              acceptFunc: () {
+                context.pop("/");
+              },
+            );
+          },
+        );
+      }
+    });
     return Scaffold(
       backgroundColor: RemovalColor.gray100,
       appBar: const MainAppBar(),
@@ -47,11 +68,11 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 100),
                   child: GestureDetector(
                     onTap: () async {
-                      final XFile? video =
+                      video =
                           await _picker.pickVideo(source: ImageSource.gallery);
                       if (video != null) {
-                        context.push("/video", extra: File(video.path));
-                        uploadVideoNotifier.uploadVideo(video: File(video.path));
+                        uploadVideoNotifier.uploadVideo(
+                            video: File(video!.path));
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -173,7 +194,9 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                   ),
                 ),
                 const SizedBox(height: 32),
-                Image.asset("assets/images/logo/main_image3.png",),
+                Image.asset(
+                  "assets/images/logo/main_image3.png",
+                ),
               ],
             ),
           ),

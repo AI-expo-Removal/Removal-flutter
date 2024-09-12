@@ -1,10 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:removal_flutter/core/removal.dart';
-import 'package:video_editor/video_editor.dart';
+import 'package:removal_flutter/core/constants/removal_style.dart';
+import 'package:removal_flutter/presentation/video/widget/compressed_video_app_bar.dart';
+import 'package:video_player/video_player.dart';
 
 class CompressedVideoScreen extends StatefulWidget {
   final String path;
@@ -19,67 +17,59 @@ class CompressedVideoScreen extends StatefulWidget {
 }
 
 class _CompressedVideoScreenState extends State<CompressedVideoScreen> {
-  late final VideoEditorController _controller;
+  late VideoPlayerController controller;
 
   @override
   void initState() {
     super.initState();
-    _initVideoController();
-  }
-
-  Future<void> _initVideoController() async {
-    _controller = VideoEditorController.file(
-      File(widget.path),
-      minDuration: const Duration(seconds: 0),
-      maxDuration: const Duration(seconds: 60),
-    );
-    await _controller.initialize().then((_) {
-      setState(() {});
-    }).catchError((error) {
-      if (error is VideoMinDurationError) {
-        // handle minimum duration bigger than video duration error
-        context.pop('/');
-      }
-    });
+    controller = VideoPlayerController.networkUrl(Uri.parse(widget.path))
+      ..initialize().then((_) {
+        setState(() {});
+      });
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (!_controller.initialized) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    }
-
     return Scaffold(
       backgroundColor: RemovalColor.gray100,
-      body: Stack(
-        alignment: Alignment.bottomLeft,
-        children: [
-          Center(
-            child: CropGridViewer.preview(
-              controller: _controller,
-            ),
-          ),
-          Positioned(
-            bottom: 52,
-            left: 20,
-            child: GestureDetector(
-              onTap: () {
-                context.pop('/');
-              },
-              child: SvgPicture.asset(
-                "assets/images/icon/video/reduce_icon.svg",
+      appBar: const CompressedVideoAppBar(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Stack(
+          children: [
+            Center(
+              child: AspectRatio(
+                aspectRatio: controller.value.aspectRatio,
+                child: VideoPlayer(controller),
               ),
             ),
-          ),
-        ],
+            Center(
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    controller.value.isPlaying
+                        ? controller.pause()
+                        : controller.play();
+                  });
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: SvgPicture.asset(
+                    controller.value.isPlaying
+                        ? "assets/images/icon/video/play_icon.svg"
+                        : "assets/images/icon/video/pause_icon.svg",
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

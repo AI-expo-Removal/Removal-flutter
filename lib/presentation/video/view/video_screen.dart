@@ -1,20 +1,19 @@
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:removal_flutter/amplifyconfiguration.dart';
-import 'package:removal_flutter/core/removal.dart';
-import 'package:removal_flutter/presentation/video/provider/compress_video_view_model_provider.dart';
+import 'package:removal_flutter/core/component/widget/removal_dialog.dart';
+import 'package:removal_flutter/core/constants/removal_style.dart';
+import 'package:removal_flutter/presentation/video/provider/get_basic_subtitle_video_view_model_provider.dart';
 import 'package:removal_flutter/presentation/video/provider/upload_video_view_model_provider.dart';
 import 'package:removal_flutter/presentation/video/widget/video_app_bar.dart';
 import 'package:removal_flutter/presentation/video/widget/video_function_widget.dart';
 import 'package:video_editor/video_editor.dart';
 
 class VideoScreen extends ConsumerStatefulWidget {
-  /// Go router의 extra의 타입은 Object이어야함.
-  /// extra => 값을 넘겨줄 때 사용하는 파라미터
-  final Object? file;
+  final File file;
 
   const VideoScreen({
     super.key,
@@ -27,7 +26,7 @@ class VideoScreen extends ConsumerStatefulWidget {
 
 class _VideoScreenState extends ConsumerState<VideoScreen> {
   late final VideoEditorController controller = VideoEditorController.file(
-    widget.file as File,
+    widget.file,
     minDuration: const Duration(seconds: 0),
     maxDuration: const Duration(seconds: 60),
   );
@@ -58,10 +57,49 @@ class _VideoScreenState extends ConsumerState<VideoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final compressVideoNotifier =
-        ref.read(compressVideoViewModelProvider.notifier);
     final uploadVideoState = ref.watch(uploadVideoViewModelProvider);
-
+    final basicSubtitleNotifier =
+        ref.read(getBasicSubtitleVideoViewModelProvider.notifier);
+    final basicSubtitleState =
+        ref.watch(getBasicSubtitleVideoViewModelProvider);
+    ref.listen(
+      getBasicSubtitleVideoViewModelProvider
+          .select((value) => value.statusCode),
+      (previous, next) {
+        if (next == const AsyncData<int?>(200)) {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) {
+              return RemovalDialog(
+                content: "자막 처리가 완료되었습니다.",
+                cancelFunc: () => context.pop("/video"),
+                acceptFunc: () {
+                  context.push(
+                    "/compressed",
+                    extra: ref.watch(getBasicSubtitleVideoViewModelProvider).detail!.s3Url,
+                  );
+                },
+              );
+            },
+          );
+        } if (next == const AsyncData<int?>(500))  {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) {
+              return RemovalDialog(
+                content: "자막 처리에 실패했습니다.",
+                cancelFunc: () => context.pop("/video"),
+                acceptFunc: () {
+                  context.pop("/video");
+                },
+              );
+            },
+          );
+        }
+      },
+    );
     return Scaffold(
       backgroundColor: RemovalColor.gray100,
       appBar: const VideoAppBar(),
@@ -168,37 +206,23 @@ class _VideoScreenState extends ConsumerState<VideoScreen> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            compressVideoNotifier.compressVideo(
-                                path: uploadVideoState.filePath!);
+                            basicSubtitleNotifier.getBasicSubtitleVideo(
+                                videoPath: uploadVideoState.filePath!);
                           },
-                          child: const VideoFunctionWidget(
-                            iconPath:
-                                "assets/images/icon/video/caption_icon.svg",
-                            title: "자막 추가",
-                          ),
+                          child: basicSubtitleState.statusCode ==
+                                  const AsyncValue<int?>.loading()
+                              ? CupertinoActivityIndicator(
+                                  color: RemovalColor.white,
+                                )
+                              : const VideoFunctionWidget(
+                                  iconPath:
+                                      "assets/images/icon/video/caption_icon.svg",
+                                  title: "자막 추가",
+                                ),
                         ),
                         const VideoFunctionWidget(
                           iconPath: "assets/images/icon/video/eraser_icon.svg",
                           title: "개발 중...",
-                        ),
-                        GestureDetector(
-                          onTap: () {
-
-                          },
-                          child: VideoFunctionWidget(
-                            iconPath:
-                                "assets/images/icon/video/caption_icon.svg",
-                            title: "자막",
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                          },
-                          child: VideoFunctionWidget(
-                            iconPath:
-                                "assets/images/icon/video/eraser_icon.svg",
-                            title: "비속어 삭제",
-                          ),
                         ),
                       ],
                     ),
