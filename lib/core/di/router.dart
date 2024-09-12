@@ -8,10 +8,10 @@ import 'package:removal_flutter/presentation/video/view/video_screen.dart';
 import 'package:video_editor/video_editor.dart';
 
 final router = GoRouter(
-  initialLocation: '/main',
+  initialLocation: '/',
   routes: [
     GoRoute(
-      path: '/main',
+      path: '/',
       builder: (context, state) => const MainScreen(),
     ),
     GoRoute(
