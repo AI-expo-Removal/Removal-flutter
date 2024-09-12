@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:removal_flutter/core/router.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:removal_flutter/core/di/router.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+ await FlutterDownloader.initialize(
+      debug: true,
+      ignoreSsl: true,
+  );
+  await Permission.storage.request();
+
   runApp(
     const ProviderScope(
       child: MyApp(),

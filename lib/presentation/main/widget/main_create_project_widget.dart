@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:removal_flutter/core/removal.dart';
+import 'package:removal_flutter/core/constants/removal_style.dart';
 
 class MainCreateProjectWidget extends StatelessWidget {
   const MainCreateProjectWidget({super.key});
@@ -25,7 +25,7 @@ class MainCreateProjectWidget extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  '새 프로젝트',
+                  '영상 업로드',
                   style: RemovalTextStyle.button1(
                     color: RemovalColor.white,
                   ),

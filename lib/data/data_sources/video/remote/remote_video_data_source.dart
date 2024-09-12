@@ -1,30 +1,43 @@
+import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:removal_flutter/core/di/dio.dart';
+import 'package:removal_flutter/domain/models/video/upload_video_response_model.dart';
+import 'package:removal_flutter/domain/models/video/video_response_model.dart';
 
 class RemoteVideoDataSource {
-  Future<void> uploadVideo({
-    required String videoUrl,
+  Future<UploadVideoResponseModel> uploadVideo({
+    required File video,
   }) async {
-    Map<String, dynamic> data = {
-      "videoUrl": videoUrl,
-    };
+    FormData data = FormData.fromMap(
+        {"video_file": await MultipartFile.fromFile(video.path)});
 
     try {
-      await dio.post(
-        "/video",
+      final response = await dio.post(
+        "/upload",
         data: data,
-        options: Options(
-          headers: {
-            "Content-Type": "application/json",
-          },
-        ),
       );
+
+      return UploadVideoResponseModel.fromJson(
+          response.data, AsyncData(response.statusCode));
     } catch (err) {
       throw Exception(err.toString());
     }
   }
 
-  Future<void> getVideo() async {
-
+  Future<VideoResponseModel> getBasicSubtitleVideo({
+    required String videoPath,
+  }) async {
+    try {
+      final response = await dio.get(
+        "/basic-subtitle",
+        queryParameters: {
+          "video_path": videoPath,
+        },
+      );
+      return VideoResponseModel.fromJson(response.data);
+    } catch (err) {
+      throw Exception(err.toString());
+    }
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:removal_flutter/core/removal.dart';
+import 'package:removal_flutter/core/constants/removal_style.dart';
 import 'package:removal_flutter/presentation/main/widget/main_setting_bottom_sheet.dart';
 
 class MainProjectWidget extends StatelessWidget {
